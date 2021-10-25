@@ -1,0 +1,38 @@
+编译原理
+
+形式语言与自动机
+A -> abBd
+B -> b
+可以继续推导的比如A称为非终结符，abd则是终结符,->称为产生。一个推导就是一个产生式
+
+正规文法与自动机等价的
+正规文法：
+A -> aB A -> a A -> null
+自动机：
+1 ->(a) 1 ->(b) 2
+
+递归下降分析法LL(1)
+消除左递归
+P -> Pa | b = 
+P -> bP'
+P'-> aP
+用通俗的语言来说就是expresision生成式如果能够生成expression，我们先生成别的expression比如MemberExpression
+switch(type) {
+  case '(':
+    parseMemberExpression() // 先把所有能够生成的表达式生成一遍，如果都生成不了，再去生成expression
+    break;
+  default:
+    parseExpression()
+    break;
+}
+
+Babel
+@babel/types包里的types文件就包含了babel的文法。
+例如：
+Expression = 
+｜MemeberExpression
+｜ArrowFunctionExpression
+...
+这就是一个生成式。
+对于Expression只能使用LR(1)分析法，归约
+对于MemberExpression 可以采用LL(1)分析法。
